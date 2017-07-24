@@ -1,0 +1,13 @@
+---
+# defaults file for java
+
+java_packages:
+  - oracle-java8-installer
+  - oracle-java8-set-default
+  - ca-certificates-java
+
+java_additional_packages: []
+
+java_policy_files:
+  - local_policy.jar
+  - US_export_policy.jar

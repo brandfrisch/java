@@ -1,0 +1,9 @@
+---
+docker:
+  containers:
+    - name: java
+      image: brandfrisch/ubuntu-16.04
+      image_version: 'latest'
+
+verifier:
+  name: goss
