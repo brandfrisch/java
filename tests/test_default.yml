@@ -3,13 +3,11 @@
   gather_facts: false
   vars:
     goss:
-      package:
-        ca-certificates-java:
-          installed: true
-        oracle-java8-installer:
-          installed: true
-        oracle-java8-set-default:
-          installed: true
+      command:
+        java -version:
+          exit-status: 0
+          stderr: []
+          timeout: 10000
 
   pre_tasks:
 

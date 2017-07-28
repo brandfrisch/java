@@ -1,0 +1,30 @@
+---
+
+- name: Set Java RPM File
+  set_fact:
+    java_rpm_file: "/usr/local/src/{{ java_oracle_download_url | basename }}"
+  tags:
+    - package
+    - java
+
+- name: Download RPM from Oracle
+  get_url:
+    headers: 'Cookie:gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
+    dest: "{{ java_rpm_file }}"
+    url: "{{ java_oracle_download_url }}"
+    validate_certs: true
+  tags:
+    - package
+    - java
+
+- name: Install Oracle Java rpm from a local file
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ java_rpm_file }}"
+    - "{{ java_packages }}"
+    - "{{ java_additional_packages }}"
+  tags:
+    - package
+    - java
