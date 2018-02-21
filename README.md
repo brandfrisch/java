@@ -1,4 +1,4 @@
-java [![Build Status](https://travis-ci.org/brandfrisch/java.svg?branch=master)](https://travis-ci.org/brandfrisch/java)
+java
 =========
 
 This is a rule to setup java on a unix system

@@ -6,3 +6,12 @@ java_additional_packages: []
 java_policy_files:
   - local_policy.jar
   - US_export_policy.jar
+
+java_security_path: /usr/lib/jvm/java-8-oracle/jre/lib/security
+
+java_system_cacerts: /etc/ssl/certs/java/cacerts
+
+java_packages:
+  - oracle-java8-installer
+  - oracle-java8-set-default
+  - ca-certificates-java

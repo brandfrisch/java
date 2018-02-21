@@ -1,5 +1,0 @@
----
-java_packages: []
-java_oracle_download_url: http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jre-8u144-linux-x64.rpm
-java_security_path: /usr/java/latest/lib/security
-java_system_cacerts: /etc/pki/java/cacerts

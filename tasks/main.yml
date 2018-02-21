@@ -1,11 +1,53 @@
 ---
 # tasks file for java
 
-- name: set distro-specific variables
-  include_vars: "{{ ansible_os_family | lower }}.yml"
-  ignore_errors: true
+- name: Add apt signing key
+  register: java_apt_key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "EEA14886"
+    state: present
+  tags:
+    - setup
+    - java
 
-- include: "{{ ansible_os_family | lower }}_setup.yml"
+- name: Update keyring
+  when: java_apt_key.changed
+  command: "apt-key update"
+  tags:
+    - setup
+    - java
+    - skip_ansible_lint
+
+- name: Add apt repositories
+  apt_repository:
+    repo: 'ppa:webupd8team/java'
+    update_cache: true
+    state: present
+  tags:
+    - setup
+    - java
+
+- name: Accepting the Oracle license
+  debconf:
+    name: 'oracle-java8-installer'
+    question: 'shared/accepted-oracle-license-v1-1'
+    value: 'true'
+    vtype: 'select'
+  tags:
+    - setup
+    - java
+
+- name: Install Java 8 requirements
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ java_packages }}"
+    - "{{ java_additional_packages }}"
+  tags:
+    - package
+    - java
 
 - name: Copy policy files
   copy:
