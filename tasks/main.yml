@@ -53,6 +53,9 @@
   copy:
     src: "{{ item }}"
     dest: "{{ java_security_path }}/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - "{{ java_policy_files }}"
   tags:
